@@ -1,0 +1,112 @@
+---
+title: "Blog1:COVID-19 in Philippines"
+description: Covid-19 in Philippines.
+author:
+  - name: Zeyu Liu 
+    affiliation: Master of Business Analytics, Monash University
+    affiliation_url: https://www.monash.edu/study/courses/find-a-course/2021/business-analytics-b6022?gclid=Cj0KCQjwy8f6BRC7ARIsAPIXOjji0OMyDmLQ4OA-UFlChWUF-CGyCVV1ehQgmU7cC4mGLApsgLP7WckaAhW7EALw_wcB&gclsrc=aw.ds
+date: 09-04-2020
+bibliography: bibliography.bib
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(ggplot2)
+library(tidyr)
+library(here)
+library(tidycovid19)
+library(coronavirus)
+library(lubridate)
+library(kableExtra)
+library(gridExtra)
+library(plotly)
+```
+
+# Blog Introduction
+COVID-19 is an infectious disease caused by the recently discovered coronavirus. This new virus and disease were unknown before it broke out in Wuhan, China in December 2019. COVID-19 is now an epidemic, affecting many countries around the world (WHO, April). 
+With the efforts and cooperation of most Asian countries, the virus has been effectively controlled in most of the Asian countries.
+However, even Southeast Asia has implemented the longest and most stringent lockdown, the number of coronavirus cases in the Philippines has now surged to more than 120,000.
+The protracted war with the virus will bring another shock to the Philippine economy(Boomberg, Aug).
+Therefore, this blog will do a simple analysis of the number of confirmed, dead, and recovered people in the Philippines
+
+
+# Data Description
+The data used in this blog was obtained from: the Center for Systems Science and Engineering (CSSE), which is a research collective housed within the Department of Civil and Systems Engineering (CaSE) at Johns Hopkins University (JHU). This research team provides the daily summary of the Coronavirus(COVID-19) cases by state and province, but in this blog, we only focus on analyzing data about the Philippines.
+
+```{r read_tidy_data}
+load(here("_posts/Blog_1/Data", "coronavirus.rda"))
+phi_covid <- coronavirus %>% dplyr::filter(country == "Philippines") %>%
+  select(date, type, cases)
+
+phi_covid <- phi_covid %>%
+  mutate(month = month(date),
+         day = day(date), 
+         week = week(date))
+
+phi_longer <- phi_covid %>%
+  pivot_wider(names_from = type, values_from = cases)
+
+```
+
+# Exploration of Data
+
+The table below shows the number of confirmed, death, and recovered each day, you can use the search bar and the column bar to play around with it. We can clearly know from the table that the coronavirus outbreak occurred in about late March.
+
+```{r casetable}
+phi_longer %>%
+  select(date, month, day, confirmed, death, recovered) %>%
+  dplyr::filter(confirmed != 0 | death != 0| recovered !=0) %>%
+  DT::datatable(caption = "COVID-19 Cases in Philippines",
+    colnames = c("Date", "Month","Day","Confirmed", "Death", "Recovered"),
+    options = list(dom = 'Bfrtip',
+                    buttons = list(list(extend = 'colvis', columns = 1:6))),
+    filter = 'top')
+```
+
+# Story Behind the Data
+
+We can see from the figure that the number of newly infected people and the number of newly recovered people reached first peak in July. The Philippines once again imposed a second blockade on Manila and nearby areas this week to curb the spread of infection. Although the economy experienced the worst contraction in history, the second quarter GDP shrank by 16.5% compared with the same period last year, 
+
+However, there is more and more evidence from other countries fighting resurgences, because people are tired of social distancing and cannot tolerate further economic blows, so the second blockade did not yield results. In the Philippines, troops and police have been deployed at checkpoints to enforce movement restrictions. The government is seeking to immediately hire 10,000 medical workers, including those who have just returned home, and provide benefits such as sickness insurance benefits, free life insurance, and accommodation.
+
+Although the Philippines has made great efforts and sacrifices for the second bockdade, we can clearly see from the figure \@ref(fig:line) and table \@ref(tab:summary-table) that the Philippines still has not effectively prevented the spread of the epidemic. The number of confirmed cases continue increase in July and August. The number of newly confirmed cases in August is about seven times higher than the number of newly confirmed cases in June. The data indicate the failure of the Philippines in fighting the coronavirus disease.
+
+```{r line, fig.cap = "The Trend of Covid in Phillipines"}
+p1<- phi_covid %>%
+  group_by(type) %>%
+  ggplot(aes(x = date, y = cases, color = type)) +
+    geom_line() +
+  theme(legend.title = element_blank())
+
+ggplotly(p1)
+```
+
+```{r summary-table}
+phi_summary <- phi_longer %>% 
+  filter(month != 9) %>%
+  group_by(month) %>%
+  summarise(Cases = sum(confirmed),
+            Deaths = sum(death),
+            recovered = sum(recovered))
+
+kable(phi_summary, caption = "cases of COVID-19 in Philippines per month.") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+# Acknowledgement
+
+Packages used are ggplot2 (@ggplot2), tidyverse (@tidyverse), tidyr (@tidyr), lubridate (@lubridate), plotly (@plotly), gridExtra (@kableExtra), here (@here), dplyr (@dplyr), and coronavirus (@coronavirus).
+
+
+
+
+
+
+
+
+
+
