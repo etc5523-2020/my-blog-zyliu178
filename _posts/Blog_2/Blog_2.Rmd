@@ -1,0 +1,90 @@
+---
+title: "Blog2:COVID-19 in Kuwait."
+description: Covid-19 in Kuwait.
+author:
+  - name: Zeyu Liu 
+    affiliation: Master of Business Analytics, Monash University
+    affiliation_url: https://www.monash.edu/study/courses/find-a-course/2021/business-analytics-b6022?gclid=Cj0KCQjwy8f6BRC7ARIsAPIXOjji0OMyDmLQ4OA-UFlChWUF-CGyCVV1ehQgmU7cC4mGLApsgLP7WckaAhW7EALw_wcB&gclsrc=aw.ds
+date: 09-18-2020
+bibliography: bibliography.bib
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(ggplot2)
+library(tidyr)
+library(here)
+library(tidycovid19)
+library(coronavirus)
+library(lubridate)
+library(kableExtra)
+library(gridExtra)
+library(plotly)
+```
+
+## Introduction
+
+The COVID-19 outbreak is a global pandemic caused by the coronavirus (SARS-COV-2). The disease was first discovered in Wuhan, China, and then quickly spread to other countries around the world in early 2020. This epidemic has brought severe challenges to the country, the government, the medical system. As of September 18, 2020, 188 countries and regions around the world have reported more than 30.071 million confirmed cases, of which more than 944,000 have died and 2.0432 million have been cured. Therefore, many organizations and media describe it as the most serious crisis facing by humans since World War Two. On January 22, the first coronavirus cases were found in Kuwait. After that, the disease spread quickly across the country.
+
+# Data Description
+
+The first data used in this blog was obtained from: the Center for Systems Science and Engineering (CSSE), which is a research collective housed within the Department of Civil and Systems Engineering (CaSE) at Johns Hopkins University (JHU). The second data used in this blog was obtained from the World Health Organization, which is an international organization to create a better and healthier future for people all over the world.
+
+```{r read_tidy_data}
+load(here("_posts/Blog_2/Data", "coronavirus.rda"))
+kua_covid <- coronavirus %>% dplyr::filter(country == "Kuwait") %>%
+  select(date, type, cases)
+
+kua_covid <- kua_covid %>%
+  mutate(month = month(date),
+         day = day(date), 
+         week = week(date))
+
+kua_longer <- kua_covid %>%
+  pivot_wider(names_from = type, values_from = cases)
+
+kua2 <- read_csv(here("_posts/Blog_2/Data", "WHO-COVID-19-global-data.csv")) %>%
+  filter(Country == "Kuwait") %>%
+  pivot_longer(names_to = "Type", values_to = "Cases", cols = starts_with("Cumulative"))
+```
+
+## 20-day lockdown after spike in cases
+
+In the past few days on May 9, there has been a spike in confirmed Covid-19 cases in Kuwait. In last Friday, the authorities announced 641 new cases, the highest single case recorded in Kuawit since the beginning of the pandemic. The Kuwaiti government has decided to implement a new round of curfew from Sunday, May 10 to May 30，as part of their efforts to combat the Covid-19 pandemic. This decision was made on the advice of Kuwait’s health authorities. 
+
+We can clearly see from the figure \@ref(fig:line) that before May 15th, the number of new confirmed cases continued to rise every day, reaching the highest point on May 17. But since then, the number of new confirmed cases has been declining every day. During the lockdown period, the Kuwaiti government increased its medical expenditures and increased the number of daily tests. With the great effort and sacrifices made by the Kuwaiti government for the second blockade, we can clearly see from figure \@ref(fig:line) that Kuwait effectively prevented the spread of the epidemic. 
+
+
+```{r line, fig.cap = "The number of confirmed cases after lockdown"}
+p1<- kua_covid[97:147, 1:6] %>%
+  ggplot(aes(x = date, y = cases)) +
+  geom_line(aes(color = "#60B0DD")) +
+  geom_smooth(aes(color = "#21618C"), se = FALSE) +
+  theme(legend.title = element_blank()) +
+  xlab("Date") +
+  theme_light() +
+  ylab("Daily confirmed cases") +
+  theme(legend.position = "none")
+
+ggplotly(p1)
+```
+
+```{r line, fig.cap = "The number of recovered cases after import medicine"}
+p2 <- kua_covid%>%
+  filter(type == "recovered",
+         month >= 5) %>%
+  ggplot(aes(x = date, y = cases)) +
+  geom_line(aes(color = "#60B0DD")) +
+  geom_smooth(aes(color = "#21618C"), se = FALSE) +
+  theme(legend.title = element_blank()) +
+  xlab("Date") +
+  theme_light() +
+  ylab("Daily confirmed cases") +
+  theme(legend.position = "none")
+
+ggplotly(p2)
+```
