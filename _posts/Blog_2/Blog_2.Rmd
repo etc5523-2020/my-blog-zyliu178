@@ -102,4 +102,4 @@ p2
 
 # Acknowledgement
 
-Packages used are ggplot2 (@ggplot2), tidyverse (@tidyverse), tidyr (@tidyr), lubridate (@lubridate),here (@here), dplyr (@dplyr), and coronavirus (@coronavirus).
+Packages used are ggplot2 (@ggplot2), tidyverse (@tidyverse), tidyr (@tidyr), lubridate (@lubridate),here (@here), dplyr (@dplyr), and coronavirus (@coronavirus), splines(@splines)

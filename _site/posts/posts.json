@@ -12,8 +12,24 @@
     "date": "2020-09-18",
     "categories": [],
     "preview": "posts/Blog_2/Blog_2_files/figure-html5/line-1.png",
-    "last_modified": "2020-09-18T21:37:41+08:00",
+    "last_modified": "2020-09-18T21:43:35+08:00",
     "input_file": "Blog_2.utf8.md"
+  },
+  {
+    "path": "posts/Blog_1/",
+    "title": "Blog1:COVID-19 in Philippines",
+    "description": "Covid-19 in Philippines.",
+    "author": [
+      {
+        "name": "Zeyu Liu",
+        "url": {}
+      }
+    ],
+    "date": "2020-09-04",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-09-18T17:17:16+08:00",
+    "input_file": {}
   },
   {
     "path": "posts/welcome/",
@@ -30,21 +46,5 @@
     "preview": {},
     "last_modified": "2020-09-04T20:16:43+08:00",
     "input_file": {}
-  },
-  {
-    "path": "posts/Blog_1/",
-    "title": "Blog1:COVID-19 in Philippines",
-    "description": "Covid-19 in Philippines.",
-    "author": [
-      {
-        "name": "Zeyu Liu",
-        "url": {}
-      }
-    ],
-    "date": "2020-09-04",
-    "categories": [],
-    "preview": {},
-    "last_modified": "2020-09-18T17:17:16+08:00",
-    "input_file": "Blog_1.utf8.md"
   }
 ]
