@@ -23,7 +23,7 @@ library(coronavirus)
 library(lubridate)
 library(kableExtra)
 library(gridExtra)
-library(plotly)
+library(splines)
 ```
 
 ## Introduction
@@ -70,21 +70,36 @@ p1<- kua_covid[97:147, 1:6] %>%
   ylab("Daily confirmed cases") +
   theme(legend.position = "none")
 
-ggplotly(p1)
+p1
 ```
 
-```{r line, fig.cap = "The number of recovered cases after import medicine"}
+## Import coronavirus medicine from Japan.
+
+The Kuwaiti Ministry of Health said that the first Japanese drug Avigan, which has achieved positive results in the treatment of coronavirus patients, will arrive in the country on June 12th.
+The minister said that the antiviral drug “Faviporavir” is sold under the “Avigan” brand and has shown encouraging results after clinical trials on coronavirus cases. The use of the drug will comply with Japanese guidelines, World Health Organization recommendations, and Kuwaiti regulations.
+
+It can be seen from the figure \@ref(fig:line2) that after June 12th, the number of newly cured patients has increased significantly compared with before. This indicate that the drugs from Japan are effective and reduce the pressure on local medical institutions。 This shows that the drugs from Japan are effective, cure a large number of coronavirus disease patients, and reduce the pressure on the Kuwaiti medical system.
+
+```{r line2, fig.cap = "The number of recovered cases after import medicine"}
 p2 <- kua_covid%>%
   filter(type == "recovered",
          month >= 5) %>%
   ggplot(aes(x = date, y = cases)) +
   geom_line(aes(color = "#60B0DD")) +
-  geom_smooth(aes(color = "#21618C"), se = FALSE) +
+  geom_smooth(aes(color = "#21618C"), se = FALSE, method="glm", family="quasipoisson", 
+                                      formula = y ~ ns(x, 3)) +
   theme(legend.title = element_blank()) +
   xlab("Date") +
   theme_light() +
-  ylab("Daily confirmed cases") +
-  theme(legend.position = "none")
+  ylab("Daily recovered cases") +
+  theme(legend.position = "none") +
+  expand_limits(y=0)
 
-ggplotly(p2)
+p2
 ```
+
+
+
+# Acknowledgement
+
+Packages used are ggplot2 (@ggplot2), tidyverse (@tidyverse), tidyr (@tidyr), lubridate (@lubridate),here (@here), dplyr (@dplyr), and coronavirus (@coronavirus).
