@@ -17,8 +17,8 @@
   },
   {
     "path": "posts/Blog_3/",
-    "title": "Blog2:COVID-19 in Kuwait.",
-    "description": "Covid-19 in Kuwait.",
+    "title": "Self-Review On My Shiny App",
+    "description": "Self-reflection on China COVID-19 Shiny app.",
     "author": [
       {
         "name": "Zeyu Liu",
@@ -28,8 +28,8 @@
     "date": "2020-09-18",
     "categories": [],
     "preview": {},
-    "last_modified": "2020-10-16T16:22:20+08:00",
-    "input_file": {}
+    "last_modified": "2020-10-16T20:47:16+08:00",
+    "input_file": "Blog_3.utf8.md"
   },
   {
     "path": "posts/Blog_1/",

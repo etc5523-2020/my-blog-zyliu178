@@ -1,0 +1,64 @@
+---
+title: "Self-Review On My Shiny App"
+description: Self-reflection on China COVID-19 Shiny app.
+author:
+  - name: Zeyu Liu 
+    affiliation: Master of Business Analytics, Monash University
+    affiliation_url: https://www.monash.edu/study/courses/find-a-course/2021/business-analytics-b6022?gclid=Cj0KCQjwy8f6BRC7ARIsAPIXOjji0OMyDmLQ4OA-UFlChWUF-CGyCVV1ehQgmU7cC4mGLApsgLP7WckaAhW7EALw_wcB&gclsrc=aw.ds
+date: 09-18-2020
+bibliography: bibliography.bib
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+## About Shiny app
+My Shiny app analyzes Coronavirus disease data in various provinces and cities in China.  
+This app provides interactive visulisation functions.
+
+- The first graph shows the cumulative confirmed COVID-19 cases of the selected city from January 4, 2020, to the end of February.
+
+- The second graph is created by Plotly with a Plotly event to help users better understand the trend of changes in the cumulative confirmed cases of the epidemic in China.
+
+- The table provide detailed daily data based on the city selected by the user.
+
+## Data Description
+
+The data used in this blog was obtained from: the Center for Systems Science and Engineering (CSSE), which is a research collective housed within the Department of Civil and Systems Engineering (CaSE) at Johns Hopkins University (JHU).
+
+# Self Review
+
+## What did I do well?
+
+### use multiple user input event data
+I used `tabsetPanel()` to subdivide the user-interface into discrete sections. So the different output panels will share the same input sidebar.
+
+### Table representing
+The table in this Shiny app follow the guideline of representation of tables.
+
+### Plotly event 
+This app use multiple plotly event allow user to hover, click and brush the graph, help user obtain a better understanding of the COVID situation in china.
+
+
+
+## What are the points I can improve on?
+
+### Time management
+
+Due to my poorly time management ability, I did not have enough time to do my shiny homework. In future projects and assignments, I will start working on the project as soon as possible instead of procrastinating.
+
+### Layout
+
+It is better if I use tabsetPanel to optimise the layout of my shiny app.
+
+
+## What are some things that I’d like to add that’s plausible?
+
+### Incorporation of CSS
+
+With using of CSS, the application will be visually more attractive to users.
+
+### Add geographical data 
+
+After using geographical data, this app can produce maps through The leaflet package.
+
