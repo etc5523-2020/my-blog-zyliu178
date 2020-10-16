@@ -5,7 +5,7 @@ author:
   - name: Zeyu Liu 
     affiliation: Master of Business Analytics, Monash University
     affiliation_url: https://www.monash.edu/study/courses/find-a-course/2021/business-analytics-b6022?gclid=Cj0KCQjwy8f6BRC7ARIsAPIXOjji0OMyDmLQ4OA-UFlChWUF-CGyCVV1ehQgmU7cC4mGLApsgLP7WckaAhW7EALw_wcB&gclsrc=aw.ds
-date: 09-18-2020
+date: 10-16-2020
 bibliography: bibliography.bib
 output:
   distill::distill_article:

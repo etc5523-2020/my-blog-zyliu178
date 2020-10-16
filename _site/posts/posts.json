@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/Blog_3/",
+    "title": "Self-Review On My Shiny App",
+    "description": "Self-reflection on China COVID-19 Shiny app.",
+    "author": [
+      {
+        "name": "Zeyu Liu",
+        "url": {}
+      }
+    ],
+    "date": "2020-10-16",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-10-16T20:49:56+08:00",
+    "input_file": "Blog_3.utf8.md"
+  },
+  {
     "path": "posts/Blog_2/",
     "title": "Blog2:COVID-19 in Kuwait.",
     "description": "Covid-19 in Kuwait.",
@@ -14,22 +30,6 @@
     "preview": "posts/Blog_2/Blog_2_files/figure-html5/line-1.png",
     "last_modified": "2020-10-09T15:18:04+08:00",
     "input_file": {}
-  },
-  {
-    "path": "posts/Blog_3/",
-    "title": "Self-Review On My Shiny App",
-    "description": "Self-reflection on China COVID-19 Shiny app.",
-    "author": [
-      {
-        "name": "Zeyu Liu",
-        "url": {}
-      }
-    ],
-    "date": "2020-09-18",
-    "categories": [],
-    "preview": {},
-    "last_modified": "2020-10-16T20:47:16+08:00",
-    "input_file": "Blog_3.utf8.md"
   },
   {
     "path": "posts/Blog_1/",
