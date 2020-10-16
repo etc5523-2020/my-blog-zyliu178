@@ -60,5 +60,5 @@ With using of CSS, the application will be visually more attractive to users.
 
 ### Add geographical data 
 
-After using geographical data, this app can produce maps through The leaflet package.
+After using geographical data, this app can produce maps through the leaflet package.
 
