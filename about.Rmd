@@ -1,9 +1,35 @@
 ---
-title: "About this blog"
-description: |
-  Some additional details about the blog
+title: "Review vietnamcovid19 package"
+description: Review vietnamcovid19 package created by Hanh Ngo.
+author:
+  - name: Zeyu Liu 
+    affiliation: Master of Business Analytics, Monash University
+    affiliation_url: https://www.monash.edu/study/courses/find-a-course/2021/business-analytics-b6022?gclid=Cj0KCQjwy8f6BRC7ARIsAPIXOjji0OMyDmLQ4OA-UFlChWUF-CGyCVV1ehQgmU7cC4mGLApsgLP7WckaAhW7EALw_wcB&gclsrc=aw.ds
+date: 10-16-2020
+bibliography: bibliography.bib
+output:
+  distill::distill_article:
+    self_contained: false
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+# Over view of the package
+
+In this blog I will review "vietnamcovid19" package created by Hanh Ngo. This package can be found from [Github](https://github.com/etc5523-2020/r-package-assessment-HanseNgo305) with a [pkgdown website](https://etc5523-2020.github.io/r-package-assessment-HanseNgo305/). The goal of _vietnamcovid19_ is to provide a simple dashboard to report the situation of Covid-19 in Vietnam from the January 2020 to October 2020.
+
+# What did I think this package would do?
+
+* I expected
+1. Successfully download from git hub.
+2. Launch_app can find and load shiny application.
+3. One function that refactors one part of the user interface side logic of the Shiny app.
+4. One function that refactors one part of the server-side logic of the Shiny app.
+5. Contains the necessary data to run the Shiny app, and the data can be explored by the user.
+
+
+
+
+
